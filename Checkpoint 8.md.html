@@ -1,0 +1,251 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Checkpoint 8.md</title><style></style></head><body id="preview">
+<h1 class="code-line" data-line-start="0" data-line-end="1"><a id="Checkpoint_8_0"></a>Checkpoint 8</h1>
+<h2 class="code-line" data-line-start="2" data-line-end="3"><a id="Qu_tipo_de_bucles_hay_en_JS_2"></a><strong>¿Qué tipo de bucles hay en JS?</strong></h2>
+<p class="has-line-data" data-line-start="4" data-line-end="7">Hay varios tipos de bucles en Javascript, aunque quizás sea conveniente explicar en qué consiste un bucle primero. Un bucle es una pieza de código que repite una acción un número de veces determinado. Veámoslo como si fuera un ascensor que sube y baja continuamente.<br>
+<img src="https://lenguajejs.com/fundamentos/introduccion/conceptos-previos/bucles-iteraciones.png" alt><br>
+Volviendo a la pregunta, los bucles más importantes en JS son los bucles for, for in, for of, for each, while y do while. El bucle for es el estándar, siendo for in/of/ y each variantes más modernas que hhan ido surgiendo con el tiempo.</p>
+<h3 class="code-line" data-line-start="8" data-line-end="9"><a id="Bucle_for_8"></a>Bucle for</h3>
+<p class="has-line-data" data-line-start="10" data-line-end="11">El bucle for es el bucle estándar, como ya he dicho. Vamos a ver cómo funciona saltando al código directamente:</p>
+<pre><code class="has-line-data" data-line-start="13" data-line-end="18">// for (inicialización; condición; incremento)
+for (let i = 0; i &lt; 5; i++) {
+  console.log(&quot;Valor de i:&quot;, i);
+}
+</code></pre>
+<p class="has-line-data" data-line-start="18" data-line-end="19">El primer elemento del bucle for, <em>let i = 0</em>, es el valor del contador, que normalmente suele empezar en cero. Este valor irá cambiando con cada iteración del bucle, aumentando en uno cada vez. Cuando el valor del contador llegue a la condición especificada por el bucle este se parará. El segundo elemento del bucle for, <em>i &lt; 5</em>, viene a decir que el bucle se ejecutará mientras i sea menor que 5 (en otras palabras, que al llegar a 5 se detendrá) y el tercer elemento, <em>i++</em>, incrementa el valor del índice en 1 con cada iteración. Esto es lo que hace que el bucle avance (si lo olvidamos el bucle será infinito, lo que puede dar problemas de rendimiento), y si lo imprimimos en consola obtendremos los valores 0, 1, 2, 3 y 4. Empieza en 0 porque es el valor inicial del contador, itera la primera vez y ya pasa a 1, y acaba en 4 porque al llegar a 5 se detiene.</p>
+<h3 class="code-line" data-line-start="20" data-line-end="21"><a id="Bucle_for_in_20"></a>Bucle for in</h3>
+<p class="has-line-data" data-line-start="22" data-line-end="23">El bucle for in es algo más moderno que el bucle for a secas y se usa para iterar sobre las propiedades de un objeto, entre otras cosas. Vamos a ver un ejemplo:</p>
+<pre><code class="has-line-data" data-line-start="24" data-line-end="29">var totn_colors = { primary: 'blue', secondary: 'gray', tertiary: 'white' };
+
+for (var color in totn_colors) {
+   console.log(totn_colors[color]);
+</code></pre>
+<p class="has-line-data" data-line-start="30" data-line-end="31">Tenemos un objeto con tres propiedades. El bucle inicia con una key (por convención se usa el singular de la variable a iterar) y a continuación llama a la variable. Finalmente se imprime la variable y la key entre corchetes. Este ejemplo de código imprime <em>blue</em>, <em>gray</em> y <em>white</em>.</p>
+<h3 class="code-line" data-line-start="32" data-line-end="33"><a id="Bucle_for_of_32"></a>Bucle for of</h3>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Este bucle se usa para iterar sobre estructuras de datos, como arrays.</p>
+<pre><code class="has-line-data" data-line-start="36" data-line-end="43">const cars = [&quot;BMW&quot;, &quot;Volvo&quot;, &quot;Mini&quot;];
+
+let text = &quot;&quot;;
+for (let x of cars) {
+  text += x;
+}
+</code></pre>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Funciona de forma similar a for in, con una variable/key que luego llama al objeto a iterar. Finalmente termina añadiendo cada iteración (con un operador compuesto) a la variable text, que inicia vacía.</p>
+<h3 class="code-line" data-line-start="46" data-line-end="47"><a id="Bucle_for_Each_46"></a>Bucle for Each</h3>
+<p class="has-line-data" data-line-start="48" data-line-end="49">For each también se usa para iterar sobre arrays, pero el bucle requiere que se le pase una función, que es la que funciona como iterador. Vamos a ver código:</p>
+<pre><code class="has-line-data" data-line-start="51" data-line-end="54">const fruits = [&quot;apple&quot;, &quot;orange&quot;, &quot;cherry&quot;];
+fruits.forEach(fruit =&gt; console.log(fruit));
+</code></pre>
+<p class="has-line-data" data-line-start="54" data-line-end="55">Esto imprime <em>apple</em>, <em>orange</em> y <em>cherry</em>.</p>
+<h3 class="code-line" data-line-start="56" data-line-end="57"><a id="Bucles_while_y_do_while_56"></a>Bucles while y do while</h3>
+<p class="has-line-data" data-line-start="58" data-line-end="59">Estos dos bucles son menos utilizados que los bucles for y sus variantes, y también son más antiguos.</p>
+<p class="has-line-data" data-line-start="60" data-line-end="61">El bucle while se parece al bucle for normal, solo que en vez de poner la condición a secas se pone un while delante. A continuación el contador se incrementa.</p>
+<pre><code class="has-line-data" data-line-start="62" data-line-end="71">let i = 0;  // Inicialización de la variable contador
+
+// Condición: Mientras la variable contador sea menor de 5
+while (i &lt; 5) {
+  console.log(&quot;Valor de i:&quot;, i);
+  
+  i = i + 1; // Incrementamos el valor de i
+}
+</code></pre>
+<p class="has-line-data" data-line-start="72" data-line-end="73">El bucle do while es parecido al while, pero siempre se ejecuta al menos una vez:</p>
+<pre><code class="has-line-data" data-line-start="74" data-line-end="81">let i = 5;
+do {
+  console.log(&quot;Hola a todos&quot;);
+  i = i + 1;
+} while (i &lt; 5);
+console.log(&quot;Bucle finalizado&quot;);
+</code></pre>
+<p class="has-line-data" data-line-start="82" data-line-end="84">En lugar de utilizar un while desde el principio junto a la condición, escribimos do. El while con la condición se traslada al final del bucle.<br>
+Lo que ocurre en este caso es que el interior del bucle se realiza siempre, y sólo se analiza la condición al terminar el bucle, por lo que aunque no se cumpla, se va a realizar al menos una vez.</p>
+<h3 class="code-line" data-line-start="85" data-line-end="86"><a id="Break_y_continue_en_bucles_85"></a>Break y continue en bucles</h3>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Es posible parar un bucle antes de que haya llegado a su final (porque se ha cumplido la condición o llegado al final del objeto). Esto se consigue con la sentencia break:</p>
+<pre><code class="has-line-data" data-line-start="90" data-line-end="95">for (i = 0; i &lt; 1000; i++) {
+    if (i === 3) { break; }
+    connsole.log(&quot;Contador: &quot; + i);
+}
+</code></pre>
+<p class="has-line-data" data-line-start="96" data-line-end="97">La instrucción continue sirve para saltarse instrucciones específicas, es decir, si llega a esta instrucción el bucle se saltará lo que ponga a continuación y pasará a la siguiente instrucción del bucle.</p>
+<pre><code class="has-line-data" data-line-start="98" data-line-end="103">for (i = 0; i &lt; 10; i++) {
+    if (i === 4) { continue; }
+    connsole.log(&quot;Contador: &quot; + i);
+}
+</code></pre>
+<p class="has-line-data" data-line-start="103" data-line-end="104">Cuando el contador vale 4 no se ejecuta y pasa al 5.</p>
+<h2 class="code-line" data-line-start="105" data-line-end="106"><a id="Cules_son_las_diferencias_entre_const_let_y_var_105"></a><strong>¿Cuáles son las diferencias entre const, let y var?</strong></h2>
+<p class="has-line-data" data-line-start="107" data-line-end="108">var permite reasignar un valor a una variable. Si tengo algo como</p>
+<pre><code class="has-line-data" data-line-start="109" data-line-end="111">var edad = 28
+</code></pre>
+<p class="has-line-data" data-line-start="111" data-line-end="112">puedo reasignarlo y decir</p>
+<pre><code class="has-line-data" data-line-start="113" data-line-end="115">var edad = 29
+</code></pre>
+<p class="has-line-data" data-line-start="115" data-line-end="116">Y al imprimir en consola obtendría 29. Esto puede resultar útil en algunos casos, pero suele considerarse una mala práctica porque al reasignar variables estamos reescribiéndolas. Es mejor usar let o const.</p>
+<p class="has-line-data" data-line-start="117" data-line-end="118">Let y const son otra cosa, ya que una vez declaradas no pueden declararse de nuevo y si tecleara el ejemplo anterior me daría error. ¿Cuál es la diferencia entonces? Let puede modificarse dentro de su ámbito. Esto sería correcto,</p>
+<pre><code class="has-line-data" data-line-start="119" data-line-end="121" class="language-let">    saludar = &quot;dice Hola tambien&quot;;
+</code></pre>
+<p class="has-line-data" data-line-start="121" data-line-end="122">pero esto otro no:</p>
+<pre><code class="has-line-data" data-line-start="123" data-line-end="126">let saludar = &quot;dice Hola&quot;;
+    let saludar = &quot;dice Hola tambien&quot;; // error: Identifier 'saludar' has already been declared
+</code></pre>
+<p class="has-line-data" data-line-start="127" data-line-end="128">En cuanto a const, no puede ni redeclararse ni modificarse. Esto resulta útil cuando hablamos de cosas que no van a cambiar nunca, como por ejemplo:</p>
+<pre><code class="has-line-data" data-line-start="129" data-line-end="131">const pi = 3,14
+</code></pre>
+<p class="has-line-data" data-line-start="131" data-line-end="132">Si intento cambiarlo dará error.</p>
+<h2 class="code-line" data-line-start="133" data-line-end="134"><a id="Qu_es_una_funcin_de_flecha_133"></a><strong>¿Qué es una función de flecha?</strong></h2>
+<p class="has-line-data" data-line-start="135" data-line-end="136">Una función de flecha es un nuevo tipo de función que hace la lectura de código más sencilla. Básicamente, se trata de reemplazar eliminar la palabra function y añadir =&gt; antes de abrir las llaves:</p>
+<pre><code class="has-line-data" data-line-start="137" data-line-end="145">const func = function () {
+  return &quot;Función tradicional.&quot;;
+};
+
+const func = () =&gt; {
+  return &quot;Función flecha.&quot;;
+};
+</code></pre>
+<ul>
+<li class="has-line-data" data-line-start="146" data-line-end="147">Si el cuerpo de la función sólo tiene una línea, podemos omitir las llaves ({}). Además, en ese caso, automáticamente se hace un return de esa única línea, por lo que podemos omitir también el return.</li>
+<li class="has-line-data" data-line-start="147" data-line-end="148">En el caso de que la función no tenga parámetros, se indica como en el ejemplo anterior: () =&gt;.</li>
+<li class="has-line-data" data-line-start="148" data-line-end="149">En el caso de que la función tenga un solo parámetro, se puede indicar simplemente el nombre del mismo: parametro =&gt;.</li>
+<li class="has-line-data" data-line-start="149" data-line-end="150">En el caso de que la función tenga 2 ó más parámetros, se indican entre paréntesis: (a, b) =&gt;.</li>
+<li class="has-line-data" data-line-start="150" data-line-end="152">Si queremos devolver un objeto, que coincide con la sintaxis de las llaves, se puede englobar con paréntesis: ({name: ‘John’}).</li>
+</ul>
+<h2 class="code-line" data-line-start="152" data-line-end="153"><a id="Qu_es_la_deconstruccin_de_variables_152"></a><strong>¿Qué es la deconstrucción de variables?</strong></h2>
+<p class="has-line-data" data-line-start="154" data-line-end="155">La deconstrucción de variables permite “desempaquetar” valores de arrays o propiedades de objetos, o cualquier cosa en distintas variables.</p>
+<pre><code class="has-line-data" data-line-start="156" data-line-end="164">let frutas = [&quot;Manzana&quot;, &quot;Pera&quot; , &quot;Platano&quot;];
+let [fruta1, fruta2, fruta3] = introduccion;
+
+
+console.log(fruta1); // &quot;Manzana&quot;
+console.log(fruta2); // &quot;Pera&quot;
+console.log(fruta3); // &quot;Platano&quot;
+</code></pre>
+<p class="has-line-data" data-line-start="164" data-line-end="165">Si por ejemplo quiero omitir el segundo elemento, no tengo más que escribir:</p>
+<pre><code class="has-line-data" data-line-start="166" data-line-end="169">let frutas = [&quot;Manzana&quot;, , &quot;Platano&quot;];
+console.log(frutas)
+</code></pre>
+<p class="has-line-data" data-line-start="169" data-line-end="170">Y entonces solamente tendría el primer y el tercer elemento del array.</p>
+<p class="has-line-data" data-line-start="171" data-line-end="172">Es posible hacerlo también con objetos:</p>
+<pre><code class="has-line-data" data-line-start="173" data-line-end="176">const obj = { a: 1, b: 2 };
+const { a, b } = obj;
+</code></pre>
+<p class="has-line-data" data-line-start="176" data-line-end="177">que es lo mismo que decir</p>
+<pre><code class="has-line-data" data-line-start="178" data-line-end="181">// const a = obj.a;
+// const b = obj.b;
+</code></pre>
+<h2 class="code-line" data-line-start="182" data-line-end="183"><a id="Qu_hace_el_operador_de_extensin_en_JS_182"></a><strong>¿Qué hace el operador de extensión en JS?</strong></h2>
+<p class="has-line-data" data-line-start="184" data-line-end="185">El operador de extensión o <em>spread operator</em> distribuye los elementos dentro de un iterable (cadena de texto, array o cualquier cosa que se pueda recorrer) dentro de un receptor. La sintaxis de este operador son tres puntos (…) seguidos de la variable que nos interese repartir. Tiene <strong><em>muchos</em></strong> usos, entre los cuales destacan:</p>
+<h4 class="code-line" data-line-start="186" data-line-end="187"><a id="Combinar_elementos_186"></a>Combinar elementos</h4>
+<pre><code class="has-line-data" data-line-start="188" data-line-end="194">let shoppingCart = [345, 375, 765, 123];
+let newItems = [98, 123];
+
+shoppingCart.push(...newItems);
+console.log(shoppingCart); // [345, 375, 765, 123, 98, 123]
+</code></pre>
+<h4 class="code-line" data-line-start="195" data-line-end="196"><a id="Copiar_elementos_195"></a>Copiar elementos</h4>
+<pre><code class="has-line-data" data-line-start="197" data-line-end="203">let animales = ['perro', 'caballo', 'gato', 'oso', 'jirafa'];
+console.log(animales); // Resultado -&gt; 'perro', 'caballo', 'gato', 'oso', 'jirafa'
+
+let copiaDeAnimales = [...animales];
+console.log(copiaDeAnimales); // Resultado -&gt; 'perro', 'caballo', 'gato', 'oso', 'jirafa'
+</code></pre>
+<h3 class="code-line" data-line-start="204" data-line-end="205"><a id="Combinar_elementos_y_aadir_nuevos_204"></a>Combinar elementos y añadir nuevos</h3>
+<pre><code class="has-line-data" data-line-start="207" data-line-end="219">let poblaciones = ['Benicasim', 'Castellón', 'Alcocebre'];
+console.log(poblaciones);
+// Resultado -&gt; [&quot;Benicasim&quot;, &quot;Castellón&quot;, &quot;Alcocebre&quot;]
+
+let nuevasPoblaciones = ['Oropesa', ...poblaciones];
+console.log(nuevasPoblaciones);
+// Resultado -&gt; [&quot;Oropesa&quot;, &quot;Benicasim&quot;, &quot;Castellón&quot;, &quot;Alcocebre&quot;]
+
+let masPoblacionesNuevas = [...poblaciones, 'Madrid'];
+console.log(masPoblacionesNuevas);
+// Resultado -&gt; [&quot;Benicasim&quot;, &quot;Castellón&quot;, &quot;Alcocebre&quot;, &quot;Madrid&quot;]
+</code></pre>
+<p class="has-line-data" data-line-start="220" data-line-end="221">Todo esto también podemos hacerlo con objetos.</p>
+<h2 class="code-line" data-line-start="222" data-line-end="223"><a id="Qu_es_la_programacin_orientada_a_objetos_222"></a><strong>¿Qué es la programación orientada a objetos?</strong></h2>
+<p class="has-line-data" data-line-start="224" data-line-end="227">La Programación Orientada a Objetos (POO, o en inglés OOP) es una corriente de programación moderna que trabaja con estructuras de datos. Mediante el uso de <strong><em>clases</em></strong>, que vienen siendo plantillas de objetos, podemos encapsular comportamiento sin repetir tanto código. Si tuviéramos una receta de distintos pasteles, cada uno tendría sus propias características, como por ejemplo sabor, pero tendría elementos comunes. Así, a partir de una<br>
+misma receta podríamos crear distintos pasteles, aunque cambiando<br>
+ingredientes. Los pasteles serían los objetos creados a partir de la receta (clase).</p>
+<p class="has-line-data" data-line-start="228" data-line-end="229">Además de proveernos una forma de agrupar y organizar nuestro código y crear nuevos elementos basados en ellas sin repetirnos, las clases nos ofrecen una forma similar a la vida real de crear estructuras de datos, que de otra forma podría ser mucho más complejo.</p>
+<p class="has-line-data" data-line-start="230" data-line-end="231">Si por ejemplo, necesitáramos añadir una variable que indique la velocidad que tiene el personaje, podríamos añadir una propiedad denominada velocidad que contenga un 5. Luego, podríamos incluir un método denominado correr que cambie esa propiedad velocidad a 10, y un método denominado caminar que la vuelva a cambiar a 5.</p>
+<h2 class="code-line" data-line-start="232" data-line-end="233"><a id="Qu_es_una_promesa_en_JS_232"></a><strong>¿Qué es una promesa en JS?</strong></h2>
+<p class="has-line-data" data-line-start="234" data-line-end="236">Una promesa es un elemento que, como en la vida real, tarda un tiempo en verse ejecutada (o puede que no se ejecute nunca, o se quede a medias, como en la vida real). Esto es útil para cuando se hacen conexiones con APIs, ya que si el servidor falla podemos hacer que vuelva a entregarnos datos cuando esté de nuevo operativo, por ejemplo.<br>
+<img src="https://lenguajejs.com/javascript/asincronia/promesas/promises.png" alt></p>
+<p class="has-line-data" data-line-start="237" data-line-end="238">La estructura básica para crear una promesa es esta:</p>
+<pre><code class="has-line-data" data-line-start="239" data-line-end="249">let greeting = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; {
+    resolve(&quot;hello&quot;)
+  }, 2000)
+
+  setTimeout(() =&gt; {
+    reject(Error(&quot;greeting not found&quot;))
+  }, 2000);
+});
+</code></pre>
+<p class="has-line-data" data-line-start="250" data-line-end="251">Utilizamos las palabras reservadas new Promise, que toman dos argumentos: uno para cuando se cumple (resolve) y otro para cuando no (reject). A continuación, con una función flecha, se inicia un contador que indicará cuánto tiempo se tarda en resolver lo que sea (en este caso el string, en dos segundos en cada caso). En el caso de las promesas incumplidas la sintaxis es la misma, aunque cambiando el resolve por el reject(o cualquier otra palabra, el asunto es indicar ambas posibilidades de alguna forma).</p>
+<p class="has-line-data" data-line-start="252" data-line-end="253">Una vez declaradas llega el momento de utlizar las promesas. Para ello se usan las palabras reservadas .then y .catch, que están mapeadas a la promesa cumplida e incumplida respectivamente. A continuación se pasa el elemento que nos interesa ejecutar con la promesa:</p>
+<pre><code class="has-line-data" data-line-start="254" data-line-end="262">greeting
+  .then(data =&gt; {
+    console.log(data)
+  })
+  .catch(err =&gt; {
+    console.error(err)
+  })
+</code></pre>
+<p class="has-line-data" data-line-start="262" data-line-end="264">Existe un método abreviado para escribir promesas, que es el método fetch.<br>
+Suele utlizarse en conexiones con APIs. El método fetch se guarda en una variable, y es una buena práctica indicar que estamos hablando de promesas:</p>
+<pre><code class="has-line-data" data-line-start="265" data-line-end="275">const PostPromise = fetch(&quot;https://api.dailysmarty.com/topics/python&quot;)
+
+PostPromise // sobre esa variable se convierte a json y luego se itera para conseguir los datos
+.then(data =&gt; data.json())
+.then(data =&gt; {
+  data.posts.forEach(item=&gt; {
+    console.log(item.title);
+  });
+})
+</code></pre>
+<p class="has-line-data" data-line-start="276" data-line-end="277">Además, las promesas se pueden agrupar. Para eso solamente hay que usar Promise.all(lista de promesas):</p>
+<pre><code class="has-line-data" data-line-start="278" data-line-end="296">const greeting = new Promise((resolve, reject) =&gt;{
+resolve('Hi there');
+reject('Oops, bad greeting');
+});
+
+const updateAccount = new Promise((resolve, reject) =&gt; {
+resolve('Updating last login...');
+reject('Error updating account with login.');
+});
+
+const loginActivities = Promise.all([greeting, updateAccount]);
+
+loginActivities.then(res =&gt; {
+res.forEach(activity =&gt; {
+  console.log(activity);
+})
+})
+</code></pre>
+<h2 class="code-line" data-line-start="297" data-line-end="298"><a id="Qu_hacen_async_y_await_por_nosotros_297"></a><strong>¿Qué hacen async y await por nosotros?</strong></h2>
+<p class="has-line-data" data-line-start="299" data-line-end="300"><img src="https://codahosted.io/docs/xE8hEJoQ3Z/blobs/bl-AEAgoEVniW/16b4d6df76c51cd717bc7ee85f69f0136efe776b31d860888c034f2373bb538391ee4c4118d7dae5747044435f3fca61832350d84fdc15e4a822e2b7fbe40454cf5a0f2e50c93e649e2d83b5163d8993e7e2dc59e5a025921e738c0b5128a8a39f3b6919" alt></p>
+<p class="has-line-data" data-line-start="301" data-line-end="302">Usamos la palabra “async” antes de una función para decir que es asíncrona (este tipo de funciones siempre devuelven una promesa). Una función async puede contener una expresión <em>await</em>, la cual pausa la ejecución de la función asíncrona y espera la resolución de la promesa pasada y, a continuación, reanuda la ejecución de la función async y devuelve el valor resuelto. Esto evita que encadenemos promesas (porque tendría que ejecutarse todo antes de poder continuar, y eso sería un caos).</p>
+<pre><code class="has-line-data" data-line-start="303" data-line-end="326">async function fetchData() {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      if (Math.random() &lt; 0.5) {
+        resolve(&quot;Datos obtenidos con éxito&quot;);
+      } else {
+        reject(&quot;Error al obtener los datos&quot;);
+      }
+    }, 1000);
+  });
+}
+
+async function getData() {
+  try {
+    const data = await fetchData();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getData();
+</code></pre>
+</body></html>
