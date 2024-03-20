@@ -6,8 +6,8 @@ var miLista = ["velma", "exploradora", "jane", "john", "harry"];
 
 i = 0;
 while (i < miLista.length);
-i++
 console.log(miLista[i]);
+i++
 
 
 
